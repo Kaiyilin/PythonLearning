@@ -1,0 +1,27 @@
+[loggers] # define the loggers
+keys = root, simpleLogger
+
+[handlers] # define the handlers
+keys = consoleHandler
+
+[formatters] # define the formatters
+keys = simpleFormatter
+
+[logger_root] # specify each further
+level = DEBUG # the root should be debug level
+handlers = consoleHandler  # with consoleHandler
+
+[logger_simpleLogger]
+level = DEBUG
+handlers = consoleHandler
+qualname = simpleLogger
+propagate = 0
+
+[handler_consoleHandler] # define the console handler
+class = StreamHandler # it's StreamHandler
+level = DEBUG
+formatter = simpleFormatter # in this format
+args = (sys.stdout,)
+
+[formatter_simpleFormatter] # define the formatter 
+format = %(name)s - %(message)s # the file is in this format
