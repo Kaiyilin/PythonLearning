@@ -3,7 +3,7 @@ from multiprocessing import Process
 
 def sqr_nums():
     for i in range(100000):
-        i * i
+        print(i * i)
 
 if __name__ == "__main__":
 
