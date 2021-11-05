@@ -119,6 +119,8 @@ class Sorting():
     def mergeSort(self):
         pass
 
+    def quickSort(self):
+        pass
 
 # MergeSort, Divide and Conquer 
 ## my version 
