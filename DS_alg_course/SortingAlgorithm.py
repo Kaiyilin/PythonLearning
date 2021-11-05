@@ -135,23 +135,18 @@ def merge(Lbranch, Rbranch):
         if Lbranch[0] < Rbranch[0]:
             buffer_array[k] = Lbranch[0]
             Lbranch.pop(0)
-            #print(buffer_array)
         else:
             buffer_array[k] = Rbranch[0]
             Rbranch.pop(0)
-            #print(buffer_array)
         k+=1
-    while len(Lbranch)>0:
+    while len(Lbranch) > 0:
         buffer_array[k] = Lbranch[0]
-        #print(buffer_array)
         Lbranch.pop(0)
         k+=1
-    while len(Rbranch)>0:
+    while len(Rbranch) > 0:
         buffer_array[k] = Rbranch[0]
-        #print(buffer_array)
         Rbranch.pop(0)
         k+=1
-    #print(buffer_array)
     return buffer_array
 
 def mergeSort(array):
@@ -188,7 +183,7 @@ def mergeSortGfG(array):
         i = 0 # LeftPointer
         j = 0 # RightPointer
         k = 0 # SortedPointer 
-        while i<len(Lbranch) and j<len(Rbranch):
+        while i < len(Lbranch) and j < len(Rbranch):
             if Lbranch[i] < Rbranch[j]:
                 array[k] = Lbranch[i]
                 i+=1
@@ -216,7 +211,8 @@ def partion(array, low, high):
     pivot = array[-1] 
 
 def quicksort(array):
-    """Divide amd Conquer"""
+    """Divide amd Conquer
+    """
 
     if len(array) == 1:
         return array
