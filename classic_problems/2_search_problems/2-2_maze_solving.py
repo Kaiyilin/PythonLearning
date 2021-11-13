@@ -3,6 +3,10 @@ A Cell is an enum with str values
 
 " " : empty space 
 "X" : blocked space.
+
+Note:
+
+conventionally, a private function (cannot be used outside the class starts with _)
 """
 
 from enum import Enum
@@ -18,7 +22,16 @@ import random
 from math import sqrt
 from generic_srch import dfs, bfs, node_to_path, astar, Node
 
+# In CS, an enumerated type is a dtype consisting of a set of named values called elements, 
+# members, enumeral, or enumerators of the type. An enumeration is used in any 
+# programming language to define a constant set of values. 
+
 class Cell(str, Enum):
+    """ Cell is defined to represent 
+    a constant set of values. 
+
+    Conventionally, the constant often represent in UPPERCASE
+    """
     EMPTY = " "
     BLOCKED = "X"
     START = "S"
@@ -26,6 +39,18 @@ class Cell(str, Enum):
     PATH = "*"
 
 class MazeLocation(NamedTuple):
+    """ MazeLocation is a named tuple object
+    The named tuple object assign meaning 
+    to each position in a tuple 
+    and allow for more readable, self-documenting code.
+
+    Usage example:
+    
+    MazeLocation(0, 1)
+    print(MazeLocation.row) -> 0
+    print(MazeLocation.column) -> 1 
+
+    """
     row: int
     column: int
 
@@ -117,3 +142,12 @@ if __name__ == "__main__":
         m.mark(path1)
         print(m)
         m.clear(path1)
+    
+    solution2: Optional[Node[MazeLocation]] = bfs(m.start, m.goal_test, m.successors)
+    if solution2 is None:
+        print("No solution found using breadth-first search!") 
+    else:
+        path2: List[MazeLocation] = node_to_path(solution2)
+        m.mark(path2)
+        print(m)
+        m.clear(path2)

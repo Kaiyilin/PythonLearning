@@ -54,16 +54,7 @@ def binary_srch(sequence: Sequence[C], key: C) -> bool:
             return True
     return False
 
-"""Depth first search (DFS)
-
-usually not the shortest paths.
-
-Using stack, which follows the rule of Last-In-First-Out (LIFO)
-
-push() - places an item on top of the stack
-pop() - Removes the item from the top of the stack and returns it
-"""
-
+# Data Structures
 class Stack(Generic[T]):
     def __init__(self) -> None:
             self._container: List[T] = []
@@ -82,6 +73,29 @@ class Stack(Generic[T]):
     def __repr__(self) -> str: 
         return repr(self._container)
 
+class Queue(Generic[T]):
+    def __init__(self) -> None:
+        self._container: Deque[T] = Deque()
+    
+    @property
+    def empty(self) -> bool:
+        return not self._container
+    
+    def push(self, item: T) -> None:
+        """Enque
+        """
+        self._container.append(item)
+    
+    def pop(self) -> T:
+        """Deque
+        you can also use lists and pop(0) as well
+        however, the pop(0) is an O(n) operation
+        on the other hand popleft from Dequeue took O(1)
+        """
+        return self._container.popleft() # FIFO
+
+    def __repr__(self) -> str:
+        return repr(self._container)
 # A node class helps you track from one state to another state
 class Node(Generic[T]):
     def __init__(self, 
@@ -103,8 +117,15 @@ class Node(Generic[T]):
 def dfs(initial: T,
         goal_test: Callable[[T], bool],
         successors: Callable[[T], List[T]]) -> Optional[Node[T]]:
+        """Depth first search (DFS)
 
-        """
+        usually not the shortest paths.
+
+        Using stack, which follows the rule of Last-In-First-Out (LIFO)
+
+        push() - places an item on top of the stack
+        pop() - Removes the item from the top of the stack and returns it
+
         frontier is where we've yet to go
         explored is where we've been 
         """
@@ -137,8 +158,34 @@ def node_to_path(node: Node[T]) -> List[T]:
     path.reverse()
     return path
 
-def bfs():
-    pass
+
+def bfs(initial: T, 
+        goal_test: Callable[[T], bool], 
+        successors: Callable[[T], List[T]]) -> Optional[Node[T]]:
+    """To implement BFS, queue is required
+    queue is FIFI (First-In-First-Out), which is like a line to use restroom
+    """
+    # frontier is where we've yet to go
+    frontier: Queue[Node[T]] = Queue() 
+    frontier.push(Node(initial, None)) 
+    # explored is where we've been 
+    explored: Set[T] = {initial}
+
+    # keep going while there is more to explore
+    while not frontier.empty:
+        current_node: Node[T] = frontier.pop() 
+        current_state: T = current_node.state 
+        # if we found the goal, we're done
+        if goal_test(current_state):
+                return current_node
+        # check where we can go next and haven't explored
+        for child in successors(current_state):
+            if child in explored: # skip children we already explored
+                continue
+            explored.add(child)
+            frontier.push(Node(child, current_node))
+    return None # went through everything and never found goal
+
 
 def astar():
     pass
