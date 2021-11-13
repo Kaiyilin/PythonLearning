@@ -67,6 +67,8 @@ pop() - Removes the item from the top of the stack and returns it
 class Stack(Generic[T]):
     def __init__(self) -> None:
             self._container: List[T] = []
+    
+    # use property decorator to set empty method to read only mode
     @property
     def empty(self) -> bool:
         return not self._container # not is true for empty container
@@ -80,6 +82,7 @@ class Stack(Generic[T]):
     def __repr__(self) -> str: 
         return repr(self._container)
 
+# A node class helps you track from one state to another state
 class Node(Generic[T]):
     def __init__(self, 
                  state: T, 
@@ -89,20 +92,27 @@ class Node(Generic[T]):
         
         self.state: T = state
         self.parent: Optional[Node] = parent 
-        self.cost: float = cost 
-        self.heuristic: float = heuristic
+        self.cost: float = cost # set for a* alg
+        self.heuristic: float = heuristic # set for a* alg
 
     def __lt__(self, other: Node) -> bool:
+        """This property was set for a* algorithm
+        """
         return (self.cost + self.heuristic) < (other.cost + other.heuristic)
 
 def dfs(initial: T,
         goal_test: Callable[[T], bool],
         successors: Callable[[T], List[T]]) -> Optional[Node[T]]:
-        # frontier is where we've yet to go
+
+        """
+        frontier is where we've yet to go
+        explored is where we've been 
+        """
+        
         frontier: Stack[Node[T]] = Stack()
         frontier.push(Node(initial, None)) 
-        # explored is where we've been 
         explored: Set[T] = {initial}
+
         # keep going while there is more to explore
         while not frontier.empty:
             current_node: Node[T] = frontier.pop() 

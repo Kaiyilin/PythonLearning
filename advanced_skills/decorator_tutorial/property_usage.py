@@ -8,7 +8,17 @@ setter and deleter as parameters.
 in short, property is used to fulfill the encapsulation in OOP
 which makes code modularised
 
+the syntax of property:
+
+property(fget=None, fset=None, fdel=None, doc=None)
+fget is function to get value of the attribute
+fset is function to set value of the attribute
+fdel is function to delete the attribute
+doc is a string (like a comment)
+
+
 https://www.maxlist.xyz/2019/12/25/python-property/
+https://www.programiz.com/python-programming/property
 """
 
 class Portal1(object):
