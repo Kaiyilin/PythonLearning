@@ -166,7 +166,10 @@ def bfs(initial: T,
     queue is FIFI (First-In-First-Out), which is like a line to use restroom
     """
     # frontier is where we've yet to go
-    frontier: Queue[Node[T]] = Queue() 
+    # initialise a queue first
+    frontier: Queue[Node[T]] = Queue()
+
+    # ENQUEUE the start point to frontier 
     frontier.push(Node(initial, None)) 
     # explored is where we've been 
     explored: Set[T] = {initial}
@@ -178,6 +181,7 @@ def bfs(initial: T,
         # if we found the goal, we're done
         if goal_test(current_state):
                 return current_node
+        # if we don't 
         # check where we can go next and haven't explored
         for child in successors(current_state):
             if child in explored: # skip children we already explored

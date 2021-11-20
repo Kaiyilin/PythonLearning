@@ -65,7 +65,7 @@ class BST(object):
 
     def preorder_print(self, start, traversal):
         """Helper method - use this to create a 
-        recursive print solution."""
+        recursive print solution. """
         if start:
             traversal += str(start.value) + "-"
             # go left, if the child still have left branch, it'll continue go left
