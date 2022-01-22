@@ -1,0 +1,1 @@
+The static folder usually contains imags, css files even javascript

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <h1>Registrants</h1>
+    <table>
+        <tr style="border: 1px solid black;">
+            <th>Name</th>
+            <th>Sport</th>
+        </tr>
+
+        {% for name in registrants %}
+            <tr>
+                <td>{{ name }}</td>
+                <td>{{ registrants[name] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

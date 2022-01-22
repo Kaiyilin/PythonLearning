@@ -36,7 +36,7 @@ class BST(object):
         """Return True if the value
         is in the tree, return
         False otherwise."""
-        return self.Bi_search(self.root, find_val)
+        return self.binary_search(self.root, find_val)
 
     def print_tree(self):
         """Print out all tree nodes
@@ -70,7 +70,7 @@ class BST(object):
             traversal += str(start.value) + "-"
             # go left, if the child still have left branch, it'll continue go left
             traversal = self.preorder_print(start.left,traversal)
-            # go right, until the node finish it's left side
+            # go right, until the node finish its left side
             traversal = self.preorder_print(start.right,traversal)
         return traversal
 # Set up tree

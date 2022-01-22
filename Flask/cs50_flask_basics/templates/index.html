@@ -1,0 +1,11 @@
+{% extends "layout.html" %} <!-- use layout.html as blueprint -->
+
+{% block body %}
+    <!--If you use post as the method, 
+    it would not upload key value pair to url -->
+    <form action="/greet" method="post">
+        <input autocomplete="off" autofocus name="name" placeholder="Name" type="text">
+        <input type="submit">
+    </form>
+
+{% endblock %}
